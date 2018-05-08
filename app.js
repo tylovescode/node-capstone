@@ -5,6 +5,7 @@ var MOCK_COLLECTION = {
 		"name": "Ten",
 		"artist": "Pearl Jam",
 		"format": "vinyl",
+		"image": "imagelocationhere",
 		"notes": "lorem ipsum dolar",
 		"publishedAt": 1470016976609
 	},
@@ -13,6 +14,7 @@ var MOCK_COLLECTION = {
 		"name": "Superfuzz Bigmuff",
 		"artist": "Mudhoney",
 		"format": "vinyl",
+		"image": "imagelocationhere",
 		"notes": "lorem ipsum dolar",
 		"publishedAt": 1470016976609
 	},
@@ -21,6 +23,7 @@ var MOCK_COLLECTION = {
 		"name": "Pulse",
 		"artist": "Pink Floyd",
 		"format": "vinyl",
+		"image": "imagelocationhere",
 		"notes": "lorem ipsum dolar",
 		"publishedAt": 1470016976609
 	},
@@ -29,6 +32,7 @@ var MOCK_COLLECTION = {
 		"name": "Californication",
 		"artist": "Red Hot Chili Peppers",
 		"format": "vinyl",
+		"image": "imagelocationhere",
 		"notes": "lorem ipsum dolar",
 		"publishedAt": 1470016976609
 	}]
