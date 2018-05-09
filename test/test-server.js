@@ -18,32 +18,3 @@ describe('index page', function () {
   });
 });
 
-describe('add page', function () {
-  it('should exist', function () {
-    return chai.request(app)
-      .get('/add.html')
-      .then(function (res) {
-        expect(res).to.have.status(200);
-      });
-  });
-});
-
-describe('update page', function () {
-  it('should exist', function () {
-    return chai.request(app)
-      .get('/update.html')
-      .then(function (res) {
-        expect(res).to.have.status(200);
-      });
-  });
-});
-
-describe('delete page', function () {
-  it('should exist', function () {
-    return chai.request(app)
-      .get('/delete.html')
-      .then(function (res) {
-        expect(res).to.have.status(200);
-      });
-  });
-});
