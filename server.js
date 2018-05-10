@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 
 //GET REQUEST TO API/RECORDS
 app.get('/api/records', (req, res) => {
-    console.log(req.headers);
     Record
     .find()
     .then(records => {
