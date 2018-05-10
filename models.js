@@ -12,6 +12,19 @@ const recordSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    format: {
+        type: String,
+        required: true
+    },
+    genre: {
+        type: String
+    },
+    release_date: {
+        type:String
+    },
+    image_url: {
+        type: String
+    }
 });
 
 const Record = mongoose.model('Record', recordSchema);
