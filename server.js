@@ -27,6 +27,17 @@ app.get('/api/records', (req, res) => {
     });
 });
 
+//GET A RECORD BY ID
+app.get('/api/records/:id', (req, res) => {
+    Record
+    .findById(req.params.id)
+    .then(record => res.json(record))
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({message: 'Internal Server Error'});
+    });
+});
+
 //ADD A RECORD
 app.post('/api/records', (req, res) => {
     const requiredFields = ['title', 'artist', 'format'];
