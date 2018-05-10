@@ -27,7 +27,32 @@ app.get('/api/records', (req, res) => {
     });
 });
 
-// app.listen(process.env.PORT || 8080);
+//ADD A RECORD
+app.post('/api/records', (req, res) => {
+    const requiredFields = ['title', 'artist', 'format'];
+    for (let i = 0; i < requiredFields.length; i++) {
+        const field = requiredFields[i];
+        if (!(field in req.body)) {
+            const message = `Missing ${field} in request body`;
+            console.error(message);
+            return res.status(400).send(message);
+        }
+    }
+    Record
+        .create({
+            title: req.body.title,
+            artist: req.body.artist,
+            format: req.body.format,
+            genre: req.body.genre,
+            release_date: req.body.release_date,
+            image_url: req.body.image_url
+        })
+        .then(record => res.status(201).json(record))
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({message: 'Internal Server Error'});
+        });
+});
 
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here
