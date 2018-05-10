@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 app.get('/api/records', (req, res) => {
     Record
     .find()
+    .sort({title: 1})
     .then(records => {
         res.json(records);
     })
