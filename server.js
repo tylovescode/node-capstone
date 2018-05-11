@@ -65,6 +65,14 @@ app.post('/api/records', (req, res) => {
         });
 });
 
+//DELETE A RECORD
+app.delete('/api/records/:id', (req, res) => {
+  Record
+  .findByIdAndRemove(req.params.id)
+  .then(record => res.status(204).end())
+  .catch(err => res.status(500).json({message: 'Internal Server Error'}));
+});
+
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here
 // and then assign a value to it in run
