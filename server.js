@@ -65,6 +65,29 @@ app.post('/api/records', (req, res) => {
         });
 });
 
+//UPDATE A RECORD
+app.put('/api/records/:id', (req, res) => {
+  //Ensure the ids in the request path and request body match
+  if (!(req.params.id && req.body.id === req.body.id)) {
+    const message = (`Request path id ${req.params.id} and request body id ${req.body.id} must match`);
+    console.error(message);
+    return res.status(400).json({ message: message });
+  }
+  const toUpdate = {};
+  const updateableFields = ['title', 'artist', 'format', 'genre', 'release_date', 'image_url'];
+
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      toUpdate[field] = req.body[field];
+    }
+  });
+  Record
+  //All key value pairs in toUpdate will be updated - that's what $set does
+  .findByIdAndUpdate(req.params.id, { $set: toUpdate })
+  .then(record => res.status(204).end())
+  .catch(err => res.status(500).json({message: 'Internal Server Error'}));
+});
+
 //DELETE A RECORD
 app.delete('/api/records/:id', (req, res) => {
   Record
