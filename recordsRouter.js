@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const Record = require('./models');
 
 //GET REQUEST TO API/RECORDS
-router.get('/api/records', (req, res) => {
+router.get('/', (req, res) => {
     Record
     .find()
     .sort({title: 1})
@@ -19,7 +19,7 @@ router.get('/api/records', (req, res) => {
 });
 
 //GET A RECORD BY ID
-router.get('/api/records/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     Record
     .findById(req.params.id)
     .then(record => res.json(record))
@@ -30,7 +30,7 @@ router.get('/api/records/:id', (req, res) => {
 });
 
 //ADD A RECORD
-router.post('/api/records', (req, res) => {
+router.post('/', (req, res) => {
     const requiredFields = ['title', 'artist', 'format'];
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
@@ -57,7 +57,7 @@ router.post('/api/records', (req, res) => {
 });
 
 //UPDATE A RECORD
-router.put('/api/records/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   //Ensure the ids in the request path and request body match
   if (!(req.params.id && req.body.id === req.body.id)) {
     const message = (`Request path id ${req.params.id} and request body id ${req.body.id} must match`);
@@ -80,7 +80,7 @@ router.put('/api/records/:id', (req, res) => {
 });
 
 //DELETE A RECORD
-router.delete('/api/records/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   Record
   .findByIdAndRemove(req.params.id)
   .then(record => res.status(204).end())
