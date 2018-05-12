@@ -45,7 +45,7 @@ router.post('/', jsonParser, (req, res) => {
     // We'll silently trim the other fields, because they aren't credentials used
     // to log in, so it's less of a problem.
     const explicitlyTrimmedFields = ['username', 'password'];
-    const nonTrimmedField = explicitlyTrimmedFields.find(field => req.body[field].trim !== req.body[field]
+    const nonTrimmedField = explicitlyTrimmedFields.find(field => req.body[field].trim() !== req.body[field]
     );
 
     if (nonTrimmedField) {
@@ -71,7 +71,7 @@ router.post('/', jsonParser, (req, res) => {
         field => 'min' in sizedFields[field] && req.body[field].trim().length < sizedFields[field].min
     );
     const tooLargeField = Object.keys(sizedFields).find(
-        field => 'max' in sizedFields[field] && req.body[field].trim().length < sizedFields[field].max
+        field => 'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max
     );
 
     if (tooSmallField || tooLargeField) {
@@ -122,3 +122,15 @@ router.post('/', jsonParser, (req, res) => {
         res.status(500).json({code: 500, message: 'Internal Server Error'});
     });
 });
+
+// Never expose all your users like below in a prod application
+// we're just doing this so we have a quick way to see
+// if we're creating users. keep in mind, you can also
+// verify this in the Mongo shell.
+router.get('/', (req, res) => {
+    return User.find()
+      .then(users => res.json(users.map(user => user.serialize())))
+      .catch(err => res.status(500).json({message: 'Internal server error'}));
+  });
+
+module.exports = {router};

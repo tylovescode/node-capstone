@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
-
+const dotenv = require('dotenv');
+dotenv.config()
 
 mongoose.Promise = global.Promise;
 
@@ -37,13 +38,13 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.use('/api/records/', recordsRouter);
-app.use('api/users/', usersRouter);
-app.use('api/auth/', authRouter);
+app.use('/api/users/', usersRouter);
+app.use('/api/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
 
 //A protected endpoint which needs a valid JWT to access it
-app.get('/api/protected', jwt, (req, res) => {
+app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({
     data:'You have access'
   });
