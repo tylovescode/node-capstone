@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 
 mongoose.Promise = global.Promise;
@@ -12,6 +13,7 @@ const app = express();
 
 const recordsRouter = require('./recordsRouter');
 
+app.use(morgan('common'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
