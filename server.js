@@ -29,10 +29,25 @@ app.use(function (req, res, next) {
   next();
 });
 
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-app.use('/api/records', recordsRouter);
+app.use('/api/records/', recordsRouter);
+app.use('api/users/', usersRouter);
+app.use('api/auth/', authRouter);
+
+const jwtAuth = passport.authenticate('jwt', {session: false});
+
+//A protected endpoint which needs a valid JWT to access it
+app.get('/api/protected', jwt, (req, res) => {
+  return res.json({
+    data:'You have access'
+  });
+});
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + 'public/index.html');
