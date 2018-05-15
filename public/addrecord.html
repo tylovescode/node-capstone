@@ -5,10 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Add a Record</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles.css" />
 </head>
 <body>
-    
+    <form method="POST" action="/api/records/">
+        <label>Record Title</label>
+        <input name="title" type="text">
+        <label>Artist</label>
+        <input name="artist" type="text">
+        <label>Format</label>
+        <input name="format" id="username" type="text">
+        <label>Genre</label>
+        <input name="genre" type="text">
+        <label>Release Date</label>
+        <input name="release_date" type="text">
+        <br>
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+    <script type = "text-javascript" src = "../server.js"></script>
 </body>
 </html>
