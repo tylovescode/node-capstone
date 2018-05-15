@@ -55,6 +55,10 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + 'public/index.html');
 });
 
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/public/login.html');
+});
+
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here
 // and then assign a value to it in run
