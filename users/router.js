@@ -113,7 +113,10 @@ router.post('/', jsonParser, (req, res) => {
         });
     })
     .then(user => {
-        return res.status(201).json(user.serialize());
+        // return res.status(201).json(user.serialize());
+        // FOR NOW, AFTER USER SUBMITS INFO THEY ARE DIRECTED TO HOME PAGE
+        return res.redirect('../../');
+        
     })
     .catch(err => {
         //Send validation errors to client, otherwise give 500 error
