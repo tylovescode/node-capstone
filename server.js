@@ -59,6 +59,11 @@ app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/login.html');
 });
 
+app.get('/igotloggedin', jwtAuth, (req, res) => {
+  res.sendFile(__dirname + '/public/igotloggedin.html');
+});
+
+
 // closeServer needs access to a server object, but that only
 // gets created when `runServer` runs, so we declare `server` here
 // and then assign a value to it in run

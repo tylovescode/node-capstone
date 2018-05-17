@@ -12,7 +12,7 @@ const jsonParser = bodyParser.json();
 //POST to register a new user
 router.post('/', jsonParser, (req, res) => {
     //Defines username and password
-    console.log(req.body);
+    // console.log(req.body);
     const requiredFields = ['username', 'password'];
     const missingField = requiredFields.find(field => !(field in req.body));
 
@@ -105,6 +105,7 @@ router.post('/', jsonParser, (req, res) => {
         return User.hashPassword(password);
     })
     .then(hash => {
+        console.log(hash);
         return User.create({
             username,
             password: hash,
