@@ -13,6 +13,7 @@ const Record = require('./models');
 const recordsRouter = require('./recordsRouter');
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+// const user = require('./users/router');
 
 const app = express();
 
